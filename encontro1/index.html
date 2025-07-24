@@ -1,0 +1,77 @@
+<!-- COMEÇAR O PROJETO COM AS INSTRUÇÕES A SEGUIR -->
+
+<!-- 
+
+    entrar na pasta onde o projeto será executado
+    criar um arquivo chamado "index.html"
+    na primeira linha, digitar html, e o Emmet vai criar o cabeçalho completo
+
+    escolher a linguagem para português "pt"
+    definir um título para oa trabalho
+
+    Criar a estrutura de pastas para armazenar os arquivos de arquivos: Data, Images, Scripts, Style
+
+-->
+
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV Start - Cadastro de Eventos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="Style/style.css">
+    <!-- anexar FavIcon -->
+
+
+    <!-- 
+
+    criar um título para a página
+    colocar uma imagem na tela
+
+    criar um form com um campo de input de texto
+    criar um botão de submit
+
+    inserir um script que ao usuário clickar, captura o texto e armazena no localStorage
+    criar um alerta imprimindo o texto armazenado
+    
+    criar um layout para a página
+    inserir variável CSS
+    definir media query para 3 telas: cel, tablet, desktop
+
+    -->
+
+    <!-- <script src="script.js" defer></script> -->
+
+</head>
+
+<body>
+
+    <div class="loader" id="loader"></div>
+
+    <main class="app hidden" id="app">
+        <header>
+            <h1>🎉 Meus Eventos</h1>
+        </header>
+
+        <section class="events">
+            <div class="event-card">
+                <h2>DEVstart</h2>
+                <p>📍 New York | 📅 Sep 10</p>
+                <!-- <button class="dell"></button> -->
+            </div>
+            <div class="event-card">
+                <h2>DEVinHouse</h2>
+                <p>📍 New York | 📅 Oct 17</p>
+            </div>
+        </section>
+
+        <button class="add" id="addEvent">＋</button>
+    </main>
+
+    <script src="Scripts/script.js"></script>
+
+</body>
+
+</html>
