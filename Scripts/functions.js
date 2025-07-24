@@ -126,9 +126,16 @@ function urlLocation(localizacao) {
 
 
 
-function eventosFiltrados(eventosLocalStorage) {
-    const variavel = JSON.parse(localStorage.getItem('eventos')) || []
-    console.log(variavel);
+function eventosFiltrados({ filtroTitulo, categoriaFiltro, filtroData }) {
+    const titulo = filtroTitulo || null;
+    const categoria = categoriaFiltro || null;
+    const data = filtroData || null;
+
+    const eventosLocalStorage = JSON.parse(localStorage.getItem('eventos')) || [];
+
+    if (titulo != null) {
+        return Array.from(eventosLocalStorage).filter((value) => { return value.titulo.includes(titulo) });
+    };
 
     return eventosLocalStorage;
 }

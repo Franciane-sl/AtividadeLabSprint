@@ -173,7 +173,7 @@ select {
 @media (min-width: 1024px) {
     #filtros {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: start;
     }
 
     form {

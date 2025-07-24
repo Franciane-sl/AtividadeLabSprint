@@ -39,11 +39,8 @@
             <button id="btnNovoEvento" aria-label="Novo Evento" aria-keyshortcuts="Alt+Shift+E Meta+Shift+E shift+=">
                 + Novo Evento</button>
             <section id="filtros">
-                <div>
-                    <input type="text" id="filtroTitulo" placeholder="Filtrar por título..."
-                        aria-label="filtrar por titulo">
-                    <button id="filtrar">Ok</button>
-                </div>
+                <input type="text" id="filtroTitulo" placeholder="Filtrar por título..."
+                    aria-label="filtrar por titulo">
                 <select id="categoriaFiltro" aria-label="categoria de filtro">
                     <option value="todos" aria-label="todos">Todos</option>
                     <option value="shows" aria-label="shows">Shows</option>
@@ -51,6 +48,7 @@
                     <option value="palestras" aria-label="palestras">Palestras</option>
                 </select>
                 <input type="date" id="filtroData" aria-label="filtro por data">
+                <button id="filtrar">Ok</button>
             </section>
 
             <div id="carrossel"></div>

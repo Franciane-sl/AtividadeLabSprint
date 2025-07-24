@@ -23,12 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let assentos = [];
 
+    let filtroTitulo, categoriaFiltro, filtroData;
 
-    let filtroTitulo;
-
-    let eventosLocalStorage = JSON.parse(localStorage.getItem('eventos')) || [];
-    let eventos = eventosFiltrados(eventosLocalStorage);
-
+    let eventos = eventosFiltrados({ filtroTitulo, categoriaFiltro, filtroData });
 
 
     carregarImagensLocais();
@@ -163,8 +160,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnFiltrar.addEventListener('click', () => {
 
-        console.log(document.getElementById('filtroTitulo').value);
+        filtroTitulo = document.getElementById('filtroTitulo').value;
+        categoriaFiltro = document.getElementById('categoriaFiltro').value;
+        filtroData = document.getElementById('filtroData').value;
+
+        eventos = eventosFiltrados({ filtroTitulo, categoriaFiltro, filtroData });
+
+        renderEventos(listaEventos, eventos);
     });
+
 
 
     renderEventos(listaEventos, eventos);
