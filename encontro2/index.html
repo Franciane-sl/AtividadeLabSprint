@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Organizador de Eventos - Projeto Front-end para Iniciantes">
+    <meta property="og:title" content="Organizador de Eventos">
+    <meta property="og:description" content="Plataforma para criar, visualizar e favoritar eventos">
+    <meta property="og:image" content="placeholder.jpg">
+    <meta property="og:url" content="https://seuprojeto.netlify.app">
+
+    <title>LABsprint - Cadastro de Eventos</title>
+    <link rel="icon" type="image/x-icon" href="/Images/favicon.ico">
+
+    <link rel="stylesheet" href="Style/style.css">
+    <script src="Scripts/functions.js" defer></script>
+    <script src="Scripts/images.js" defer></script>
+    <script src="Scripts/events.js" defer></script>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Organizador de Eventos</h1>
+    </header>
+
+    <main id="content">
+        <page id="home">
+            <button id="btnNovoEvento" aria-label="Novo Evento" aria-keyshortcuts="Alt+Shift+E Meta+Shift+E shift+=">
+                + Novo Evento</button>
+            <section id="filtros">
+                <div>
+                    <input type="text" id="filtroTitulo" placeholder="Filtrar por título..."
+                        aria-label="filtrar por titulo">
+                    <button id="filtrar">Ok</button>
+                </div>
+                <select id="categoriaFiltro" aria-label="categoria de filtro">
+                    <option value="todos" aria-label="todos">Todos</option>
+                    <option value="shows" aria-label="shows">Shows</option>
+                    <option value="cursos" aria-label="cursos">Cursos</option>
+                    <option value="palestras" aria-label="palestras">Palestras</option>
+                </select>
+                <input type="date" id="filtroData" aria-label="filtro por data">
+            </section>
+
+            <div id="carrossel"></div>
+
+            <section id="listaEventos" aria-label="lista de eventos"></section>
+        </page>
+
+        <page id="formularioEvento" class="hidden">
+            <form id="eventoForm">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" name="titulo" aria-label="titulo" required>
+
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" name="descricao" aria-label="descricao" required></textarea>
+
+                <label for="data">Data e Hora</label>
+                <input type="datetime-local" id="data" name="data" aria-label="data" required>
+
+                <label for="localizacao">Localização</label>
+                <input type="text" id="localizacao" name="localizacao" aria-label="localizacao" required>
+                <button type="button" id="locationBtn" aria-label="minha localização">Usar minha localização</button>
+                <div id="mapa">
+                    <iframe id="mapaFrame" src="https://www.google.com/maps/embed" width="100%" height="450px"
+                        style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+
+                <label for="imagens">Imagens (Capa e Galeria)</label>
+                <input type="file" id="imagens" name="imagens" aria-label="imagens" multiple accept="image/*">
+                <div id="previewImagens"></div>
+
+                <label for="tipoIngresso">Tipo de Ingresso</label>
+                <select id="tipoIngresso" aria-label="tipo de ingrasso">
+                    <option value="gratuito" aria-label="gratuito">Gratuito</option>
+                    <option value="pago" aria-label="pago">Pago</option>
+                </select>
+
+                <div id="detalhesIngresso" class="hidden">
+                    <label for="valorIngresso">Valor Base (R$)</label>
+                    <input type="number" id="valorIngresso" aria-label="valor do ingresso">
+                    <label for="taxa">Taxa Adicional (R$)</label>
+                    <input type="number" id="taxa" aria-label="taxa do ingresso">
+                </div>
+
+                <div id="mapaAssentos" class="hidden" aria-label="mapa de assentos">
+                </div>
+
+                <button type="submit" aria-label="salvar evento">Salvar Evento</button>
+                <button type="button" id="homeBtn" aria-label="cancelar cadastro">Cancelar</button>
+            </form>
+        </page>
+
+        <!-- <dialog id="modal">
+            <button id="fecharModal" class="fecharModal">X</button>
+            <form id="modalForm" method="dialog">
+
+            </form>
+        </dialog> -->
+
+    </main>
+
+    <footer>
+        <p>&copy; LABsprint - Organizador de Eventos - 2025</p>
+    </footer>
+
+
+</body>
+
+</html>
