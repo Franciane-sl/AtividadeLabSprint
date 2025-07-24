@@ -127,5 +127,8 @@ function urlLocation(localizacao) {
 
 
 function eventosFiltrados(eventosLocalStorage) {
+    const variavel = JSON.parse(localStorage.getItem('eventos')) || []
+    console.log(variavel);
+
     return eventosLocalStorage;
 }

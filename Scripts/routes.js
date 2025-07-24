@@ -1,5 +1,7 @@
+const homePage = document.getElementById('home');
 const routes = {
     '/': '<h1>Página Inicial</h1><p>Bem-vindo à página inicial.</p>',
+    // '/': `${homePage.innerHtml}`,
     '/about': '<h1>Sobre</h1><p>Informações sobre nós.</p>',
     '/contact': '<h1>Contato</h1><p>Entre em contato conosco.</p>'
 };

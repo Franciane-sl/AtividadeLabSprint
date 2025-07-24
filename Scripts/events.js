@@ -112,10 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.detalhesEvento = function (index) {
         console.log(`Evento - detalhes: ${eventos[index].titulo}`);
         // confirm(`Evento - detalhes: ${eventos[index].titulo}`);
-
         modal.showModal();
-
-
         const card = renderModal(eventos[index], index);
         modalForm.innerHTML = card.innerHTML;
 
