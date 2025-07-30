@@ -1,119 +1,124 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br" data-theme="light">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Organizador de Eventos - Projeto Front-end para Iniciantes">
-    <meta property="og:title" content="Organizador de Eventos">
-    <meta property="og:description" content="Plataforma para criar, visualizar e favoritar eventos">
-    <meta property="og:image" content="placeholder.jpg">
-    <meta property="og:url" content="https://seuprojeto.netlify.app">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Organizador de Eventos - Projeto Front-end para Iniciantes" />
+  <meta property="og:title" content="Organizador de Eventos" />
+  <meta property="og:description" content="Plataforma para criar, visualizar e favoritar eventos" />
+  <meta property="og:image" content="placeholder.jpg" />
 
-    <title>LABsprint - Cadastro de Eventos</title>
-    <link rel="icon" type="image/x-icon" href="/Images/favicon.ico">
+  <title>FSL - Cadastro de Eventos</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-    <link rel="stylesheet" href="Style/style.css">
-    <script src="Scripts/functions.js" defer></script>
-    <script src="Scripts/images.js" defer></script>
-    <script src="Scripts/events.js" defer></script>
-    <!-- <script src="Scripts/routes.js" defer></script> -->
-
+  <link rel="stylesheet" href="Style/style.css" />
+  <script src="Scripts/functions.js" defer></script>
+  <script src="Scripts/images.js" defer></script>
+  <script src="Scripts/events.js" defer></script>
+  <script src="Scripts/theme-toggle.js" defer></script>
 </head>
 
 <body>
+  <header>
+    <h1>Organizador de Eventos</h1>
+    <!-- Menu removido -->
+  </header>
 
-    <header>
-        <h1>Organizador de Eventos</h1>
-        <!-- <section id="paginacao">
-            <ul>
-                <li><a href="/" data-route="/">Home</a></li>
-                <li><a href="/about" data-route="/about">About</a></li>
-                <li><a href="/contact" data-route="/contact">Contact</a></li>
-            </ul>
-        </section> -->
-    </header>
+  <main id="content">
 
-    <main id="content">
-        <page id="home">
-            <button id="btnNovoEvento" aria-label="Novo Evento" aria-keyshortcuts="Alt+Shift+E Meta+Shift+E shift+=">
-                + Novo Evento</button>
-            <section id="filtros">
-                <input type="text" id="filtroTitulo" placeholder="Filtrar por título..."
-                    aria-label="filtrar por titulo">
-                <select id="categoriaFiltro" aria-label="categoria de filtro">
-                    <option value="todos" aria-label="todos">Todos</option>
-                    <option value="shows" aria-label="shows">Shows</option>
-                    <option value="cursos" aria-label="cursos">Cursos</option>
-                    <option value="palestras" aria-label="palestras">Palestras</option>
-                </select>
-                <input type="date" id="filtroData" aria-label="filtro por data">
-                <button id="filtrar">Ok</button>
-            </section>
+    <!-- Feedback acessível -->
+    <div id="mensagemFeedback" role="status" aria-live="polite" class="hidden"></div>
 
-            <div id="carrossel"></div>
+    <!-- Página Inicial -->
+    <section id="home">
+      <button id="btnNovoEvento" aria-label="Novo Evento" aria-keyshortcuts="Alt+Shift+E Meta+Shift+E Shift+=">
+        + Novo Evento
+      </button>
 
-            <section id="listaEventos" aria-label="lista de eventos"></section>
-        </page>
+      <section id="filtros">
+        <input type="text" id="filtroTitulo" placeholder="Filtrar por título..." aria-label="Filtrar por título" />
+        <select id="categoriaFiltro" aria-label="Categoria do evento">
+          <option value="todos">Todos</option>
+          <option value="shows">Shows</option>
+          <option value="cursos">Cursos</option>
+          <option value="palestras">Palestras</option>
+        </select>
+        <input type="date" id="filtroData" aria-label="Filtrar por data" />
+        <button id="filtrar" aria-label="Aplicar filtros">Ok</button>
+      </section>
 
-        <page id="formularioEvento" class="hidden">
-            <form id="eventoForm">
-                <label for="titulo">Título</label>
-                <input type="text" id="titulo" name="titulo" aria-label="titulo" required>
+      <div id="carrossel" aria-label="Carrossel de eventos em destaque"></div>
 
-                <label for="descricao">Descrição</label>
-                <textarea id="descricao" name="descricao" aria-label="descricao" required></textarea>
+      <section id="listaEventos" aria-label="Lista de eventos disponíveis">
+        <!-- Eventos serão inseridos via JS com botão de favoritar -->
+      </section>
+    </section>
 
-                <label for="data">Data e Hora</label>
-                <input type="datetime-local" id="data" name="data" aria-label="data" required>
+    <!-- Seções Sobre e Contato removidas -->
 
-                <label for="localizacao">Localização</label>
-                <input type="text" id="localizacao" name="localizacao" aria-label="localizacao" required>
-                <button type="button" id="locationBtn" aria-label="minha localização">Usar minha localização</button>
-                <div id="mapa">
-                    <iframe id="mapaFrame" src="https://www.google.com/maps/embed" width="100%" height="450px"
-                        style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
-                </div>
+    <!-- Formulário de Evento -->
+    <section id="formularioEvento" class="hidden">
+      <form id="eventoForm">
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" name="titulo" required aria-required="true" aria-label="Título do evento" />
 
-                <label for="imagens">Imagens (Capa e Galeria)</label>
-                <input type="file" id="imagens" name="imagens" aria-label="imagens" multiple accept="image/*">
-                <div id="previewImagens"></div>
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" required aria-required="true"
+          aria-label="Descrição do evento"></textarea>
 
-                <label for="tipoIngresso">Tipo de Ingresso</label>
-                <select id="tipoIngresso" aria-label="tipo de ingrasso">
-                    <option value="gratuito" aria-label="gratuito">Gratuito</option>
-                    <option value="pago" aria-label="pago">Pago</option>
-                </select>
+        <label for="data">Data e Hora</label>
+        <input type="datetime-local" id="data" name="data" required aria-required="true"
+          aria-label="Data e hora do evento" />
 
-                <div id="detalhesIngresso" class="hidden">
-                    <label for="valorIngresso">Valor Base (R$)</label>
-                    <input type="number" id="valorIngresso" aria-label="valor do ingresso">
-                    <label for="taxa">Taxa Adicional (R$)</label>
-                    <input type="number" id="taxa" aria-label="taxa do ingresso">
-                </div>
+        <label for="localizacao">Localização</label>
+        <input type="text" id="localizacao" name="localizacao" required aria-required="true"
+          aria-label="Localização do evento" />
+        <button type="button" id="locationBtn" aria-label="Usar minha localização">Usar minha localização</button>
 
-                <div id="mapaAssentos" class="hidden" aria-label="mapa de assentos">
-                </div>
+        <div id="mapa">
+          <iframe id="mapaFrame" src="https://www.google.com/maps/embed" width="100%" height="300px" style="border: 0;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
 
-                <button type="submit" aria-label="salvar evento">Salvar Evento</button>
-                <button type="button" id="homeBtn" aria-label="cancelar cadastro">Cancelar</button>
-            </form>
-        </page>
+        <label for="imagens">Imagens (Capa e Galeria)</label>
+        <input type="file" id="imagens" name="imagens" multiple accept="image/*" aria-label="Imagens do evento" />
+        <div id="previewImagens" aria-label="Pré-visualização de imagens"></div>
 
-        <dialog id="modal">
-            <button id="fecharModal" class="fecharModal">X</button>
-            <form id="modalForm" method="dialog">
-            </form>
-        </dialog>
+        <label for="tipoIngresso">Tipo de Ingresso</label>
+        <select id="tipoIngresso" aria-label="Tipo de ingresso">
+          <option value="gratuito">Gratuito</option>
+          <option value="pago">Pago</option>
+        </select>
 
-    </main>
+        <div id="detalhesIngresso" class="hidden">
+          <label for="valorIngresso">Valor Base (R$)</label>
+          <input type="number" id="valorIngresso" name="valorIngresso" step="0.01" aria-label="Valor do ingresso" />
 
-    <footer>
-        <p>&copy; LABsprint - Organizador de Eventos - 2025</p>
-    </footer>
+          <label for="taxa">Taxa Adicional (R$)</label>
+          <input type="number" id="taxa" name="taxa" step="0.01" aria-label="Taxa adicional" />
+        </div>
 
+        <div id="mapaAssentos" class="hidden" aria-label="Mapa de assentos"></div>
 
+        <button type="submit" aria-label="Salvar evento">Salvar Evento</button>
+        <button type="button" id="homeBtn" aria-label="Cancelar cadastro">Cancelar</button>
+      </form>
+    </section>
+
+    <!-- Modal -->
+    <dialog id="modal">
+      <button id="fecharModal" class="fecharModal" aria-label="Fechar modal">×</button>
+      <form id="modalForm" method="dialog" aria-label="Conteúdo do modal"></form>
+    </dialog>
+    <button id="toggleTema" aria-label="Alternar tema (claro/escuro)">
+      Alternar Tema
+    </button>
+  </main>
+
+  <footer>
+    <p>&copy; FSL - Organizador de Eventos - 2025</p>
+  </footer>
 </body>
 
 </html>
