@@ -209,14 +209,24 @@ textarea {
   background-color: #a97fd1;
 }
 
+#listaEventos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: start;
+}
+
 /* Cards de Evento */
 .evento-card {
   background: #faf8ff;
   border: 1px solid #d6c2f0;
   border-radius: 10px;
   padding: 15px;
-  margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(126, 87, 194, 0.1);
+  flex: 1 1 300px;
+  max-width: 400px;
+  min-width: 280px; 
+  
 }
 
 .evento-card h3 {
@@ -235,15 +245,25 @@ textarea {
 }
 
 /* Modal */
-dialog#modal {
-  width: 90%;
+dialog#modal[open] {
+  width: 80%;
   max-width: 600px;
   padding: 20px;
   border: none;
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 0 20px rgba(126, 87, 194, 0.3);
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .modal-img {
@@ -259,7 +279,7 @@ dialog#modal {
   background: transparent;
   border: none;
   font-size: 20px;
-  color: #7e57c2;
+  color: #a97fd1;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -267,8 +287,26 @@ dialog#modal {
 }
 
 .fecharModal:hover {
-  color: #a97fd1;
+  color: #cdbcdd;
 }
+
+.modal-botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+  
+}
+
+.modal-botoes button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
 
 /* Mapa */
 #mapa iframe {
@@ -282,7 +320,7 @@ dialog#modal {
   display: none !important;
 }
 
-/* Tema Escuro (com JS ou toggle via data-theme) */
+/* Tema Escuro */
 html[data-theme="dark"] body {
   background-color: #1f1b2e;
   color: #e3d7ff;
@@ -296,6 +334,29 @@ html[data-theme="dark"] main {
 html[data-theme="dark"] header,
 html[data-theme="dark"] footer {
   background: linear-gradient(135deg, #4b3b72, #7e57c2);
+  color: #e3d7ff;
+}
+
+html[data-theme="dark"] button {
+  background-color: #7e57c2;
+  color: #fff;
+}
+
+html[data-theme="dark"] button:hover,
+html[data-theme="dark"] button:focus {
+  background-color: #a97fd1;
+  color: #fff;
+}
+
+html[data-theme="dark"] .btn-favoritar {
+  background-color: transparent;
+  color: #e3d7ff;
+  border-color: #a97fd1;
+}
+
+html[data-theme="dark"] .btn-favoritar:hover {
+  background-color: #3a2c57;
+  border-color: #7e57c2;
 }
 
 html[data-theme="dark"] input,
@@ -306,19 +367,50 @@ html[data-theme="dark"] select {
   color: #e3d7ff;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  
-  .carouselGrande img {
-    width: 120px;
-    height: 80px;
-  }
-
-  #previewImagens img {
-    width: 100px;
-    height: 75px;
-  }
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] textarea:focus,
+html[data-theme="dark"] select:focus {
+  border-color: #a97fd1;
 }
+
+html[data-theme="dark"] .evento-card {
+  background: #2f2644;
+  border-color: #4b3b72;
+  color: #e3d7ff;
+}
+
+html[data-theme="dark"] #mensagemFeedback {
+  background: #3a2c57;
+  color: #e3d7ff;
+}
+
+html[data-theme="dark"] dialog#modal[open] {
+  background-color: #2a2340;
+  color: #e3d7ff;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+html[data-theme="dark"] .fecharModal {
+  color: #d6c2f0;
+}
+
+html[data-theme="dark"] .fecharModal:hover {
+  color: #a97fd1;
+}
+
+html[data-theme="dark"] .modal-botoes button {
+  background-color: #7e57c2;
+  color: #fff;
+}
+
+html[data-theme="dark"] .modal-botoes button:hover {
+  background-color: #a97fd1;
+}
+
+html[data-theme="dark"] #previewImagens img {
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
 
 @media (max-width: 480px) {
   .carouselGrande img {
