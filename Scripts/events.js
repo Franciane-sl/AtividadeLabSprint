@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Pega os eventos do localStorage ou inicia vazio
   let eventos = JSON.parse(localStorage.getItem('eventos')) || [];
 
-  // Pega favoritos do localStorage (array de índices ou IDs)
+  // Pega favoritos do localStorage 
   let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
 
   // Função para mostrar mensagem de feedback por 3 segundos
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('article');
       card.className = 'evento-card';
       card.id = `evento${index}`;
-      card.setAttribute('tabindex', '0'); // para acessibilidade
+      card.setAttribute('tabindex', '0'); 
 
       // Conteúdo do card
       card.innerHTML = `
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Alterna favorito e atualiza localStorage e UI
+  
   function toggleFavorito(index) {
     const pos = favoritos.indexOf(index);
     if (pos > -1) {
@@ -91,12 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEventos(listaEventos, eventos);
   }
 
-  // Função para limpar o preview de imagens e mostrar novas (assumindo base64 já processado no readImages)
-  function carregarImagensLocais() {
-    // Se quiser carregar imagens já salvas, implemente aqui
-  }
 
-  // Função simulada para ler imagens e mostrar preview
+
+  
   async function readImages(event) {
     const files = Array.from(event.target.files);
     previewImagens.innerHTML = '';
@@ -112,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Função simulada para converter arquivos para base64 array
+  
   async function arrayToBase64(files) {
     const result = [];
     for (const file of files) {
@@ -126,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return result;
   }
 
-  // Função filtro (pode ser adaptada conforme já existente)
+ 
   function eventosFiltrados({ filtroTitulo = '', categoriaFiltro = 'todos', filtroData = '' }) {
     return eventos.filter(evento => {
       const tituloOk = evento.titulo.toLowerCase().includes(filtroTitulo.toLowerCase());
@@ -136,11 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Função detalhesEvento para modal (mantive seu uso)
+  
   window.detalhesEvento = function (index) {
     modal.showModal();
     const evento = eventos[index];
-    // Montar conteúdo do modal (simplificado)
+    
     modalForm.innerHTML = `
       <h2>${evento.titulo}</h2>
       ${evento.imagens && evento.imagens.length > 0 ? `<img src="${evento.imagens[0]}" alt="Imagem do evento ${evento.titulo}" class="modal-img">` : ''}
@@ -148,16 +145,64 @@ document.addEventListener('DOMContentLoaded', () => {
       <p><strong>Data:</strong> ${new Date(evento.data).toLocaleString()}</p>
       <p><strong>Localização:</strong> ${evento.localizacao}</p>
       <p><strong>Tipo de ingresso:</strong> ${evento.tipoIngresso}</p>
-      <button id="fecharModal" class="fecharModal" aria-label="Fechar modal">×</button>
+      <button id="fecharModal" class="fecharModal" aria-label="Fechar modal">x</button>
+      <div class="modal-botoes">
+      <button id="excluirModal">Excluir</button>
+      <button id="editarModal">Editar</button>
+      </div>
     `;
 
-    // Botão fechar modal
     document.getElementById('fecharModal').addEventListener('click', () => {
       modal.close();
     });
+
+    document.getElementById('excluirModal').addEventListener('click', () => {
+      if(confirm('Tem certeza que quer excluir esse evento?')) {
+        eventos.splice(index, 1);
+        localStorage.setItem('eventos', JSON.stringify(eventos));
+        modal.close();
+        renderEventos(listaEventos, eventos);
+        mostrarFeedback('O evento foi excluido com sucesso!')
+      } 
+    })
+
+    document.getElementById('editarModal').addEventListener('click', () => {
+      modal.close();
+      formulario.classList.remove('hidden');
+      home.classList.add('hidden');
+
+      const evento = eventos[index];
+
+      eventoForm.titulo.value = evento.titulo;
+      eventoForm.descricao.value = evento.descricao;
+      eventoForm.data.value = evento.data;
+      eventoForm.localizacao.value = evento.localizacao;
+      tipoIngresso.value = evento.tipoIngresso;
+      document.getElementById('categoriaFiltro').value = evento.categoria;
+
+      if (evento.tipoIngresso !== 'gratuito') {
+        document.getElementById('valorIngresso').value = evento.valor;
+        document.getElementById('taxa').value = evento.taxa;
+        detalhesIngresso.classList.remove('hidden');
+      } else {
+        detalhesIngresso.classList.add('hidden');
+      }
+
+      previewImagens.innerHTML = '';
+      if (evento.imagens && evento.imagens.length > 0) {
+        evento.imagens.forEach(src=>{
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = 'Imagem do evento';
+          previewImagens.appendChild(img);
+        }); 
+      }
+
+      eventoForm.dataset.editando = index;
+    });
   };
 
-  // Eventos dos botões
+ 
   btnNovoEvento.addEventListener('click', () => {
     home.classList.add("hidden");
     formulario.classList.remove("hidden");
@@ -197,11 +242,20 @@ document.addEventListener('DOMContentLoaded', () => {
       categoria: document.getElementById('categoriaFiltro').value || 'todos'
     };
 
-    eventos.push(novoEvento);
+    if(eventoForm.dataset.editando){
+      const idx = Number(eventoForm.dataset.editando);
+      eventos[idx] = novoEvento;
+      delete eventoForm.dataset.editando;
+      mostrarFeedback('Evento editado com sucesso!');
+    } else{
+      eventos.push(novoEvento);
+      mostrarFeedback('Evento salvo com sucesso!');
+    }
+
     localStorage.setItem('eventos', JSON.stringify(eventos));
 
     renderEventos(listaEventos, eventos);
-    mostrarFeedback('Evento salvo com sucesso!');
+    
 
     eventoForm.reset();
     previewImagens.innerHTML = '';
@@ -219,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderEventos(listaEventos, filtrados);
   });
 
-  // Renders iniciais
+ 
   renderEventos(listaEventos, eventos);
 
 });
