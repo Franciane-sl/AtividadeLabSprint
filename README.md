@@ -11,7 +11,7 @@ Uma plataforma web completa e acessível para **criar, visualizar, editar, favor
 👉 [https://resilient-scone-09d160.netlify.app](https://resilient-scone-09d160.netlify.app)
 
 📂 **Repositório no GitHub**:  
-👉 [https://github.com/Franciane-sl/AtividadeLabSprint](https://github.com/Franciane-sl/AtividadeLabSprint)
+👉 [https://github.com/Franciane-sl/OrganizadorDeEventos_LabSprint](https://github.com/Franciane-sl/OrganizadorDeEventos_LabSprint)
 
 ---
 
@@ -60,7 +60,7 @@ Uma plataforma web completa e acessível para **criar, visualizar, editar, favor
 
 1. Clone o repositório:
 
-git clone https://github.com/Franciane-sl/AtividadeLabSprint
+git clone https://github.com/Franciane-sl/OrganizadorDeEventos_LabSprint
 
 2. Acesse a pasta do projeto:
 
