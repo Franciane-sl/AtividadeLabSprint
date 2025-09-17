@@ -1,5 +1,8 @@
 # 🎉 Organizador de Eventos FSL
 
+🎉 **Projeto vencedor do segundo lugar no evento Lab Sprint!**
+
+
 Uma plataforma web completa e acessível para **criar, visualizar, editar, favoritar** e **gerenciar eventos**, com suporte a **geolocalização**, **tema escuro**, **upload de imagens** e muito mais!
 
 > 🚀 Projeto desenvolvido para o evento **Lab Sprint**.
@@ -8,7 +11,7 @@ Uma plataforma web completa e acessível para **criar, visualizar, editar, favor
 👉 [https://resilient-scone-09d160.netlify.app](https://resilient-scone-09d160.netlify.app)
 
 📂 **Repositório no GitHub**:  
-👉 [https://github.com/Franciane-sl/atividadeLabSprint](https://github.com/Franciane-sl/atividadeLabSprint)
+👉 [https://github.com/Franciane-sl/atividadeLabSprint](https://github.com/Franciane-sl/AtividadeLabSprint)
 
 ---
 
